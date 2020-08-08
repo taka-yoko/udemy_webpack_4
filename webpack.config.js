@@ -15,7 +15,22 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
           'sass-loader'
+        ]
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg|woff2?|ttf|eot)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[contenthash].[ext]',
+              outputPath: 'images',
+              publicPath: 'images'
+            }
+          }
+
         ]
       }
     ]
