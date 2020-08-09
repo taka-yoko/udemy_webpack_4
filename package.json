@@ -17,5 +17,9 @@
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "core-js": "3",
+    "regenerator-runtime": "^0.13.7"
   }
 }
