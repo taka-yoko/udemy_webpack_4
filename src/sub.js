@@ -1,1 +1,1 @@
-console.log('this is a sub file');
+console.log('this is a sub file')
