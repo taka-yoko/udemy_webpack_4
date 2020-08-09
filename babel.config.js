@@ -1,5 +1,5 @@
 module.exports = api => {
-  api.cache(true);
+  api.cache(true)
 
   // target設定はbrowserlist参照
   // https://github.com/browserslist/browserslist
@@ -9,8 +9,10 @@ module.exports = api => {
         "targets": [
           "last 1 version",
           "IE 11"
-        ]
-      }]
+        ],
+        useBuiltIns: "usage",
+        corejs: 3
+      }],
     ]
   }
 }
