@@ -21,10 +21,16 @@
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.1"
   },
   "dependencies": {
     "core-js": "3",
     "regenerator-runtime": "^0.13.7"
+  },
+  "scripts": {
+    "cleanup": "npx rimraf ./public",
+    "dev": "npm run cleanup && npx webpack --config ./webpack.dev.js",
+    "build": "npm run cleanup && npx webpack --config ./webpack.prod.js"
   }
 }

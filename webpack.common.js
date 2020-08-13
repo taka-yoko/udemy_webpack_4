@@ -1,17 +1,14 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlwebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
-  mode : 'development',
-  devtool: 'none',
+module.exports = ({outputFile, assetFile}) => ({
   entry: {
     app: './src/app.js',
     sub: './src/sub.js'
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[chunkhash].js'
+    filename: `${outputFile}.js`
   },
   module: {
     rules: [
@@ -32,7 +29,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          //'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -45,7 +41,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[contenthash].[ext]',
+              name: `${assetFile}.[ext]`,
               outputPath: 'images',
               publicPath: 'images'
             }
@@ -61,11 +57,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
-    }),
-    new HtmlwebpackPlugin({
-      template: './src/index.html',
-      inject: 'body'
+      filename: `${outputFile}.css`
     })
   ]
-}
+})
