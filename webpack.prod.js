@@ -1,4 +1,6 @@
 const HtmlwebpackPlugin = require('html-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const {merge} = require('webpack-merge')
 const commonConf = require('./webpack.common')
 const outputFile = '[name].[chunkhash]'
@@ -10,7 +12,22 @@ module.exports = () => merge(commonConf({outputFile, assetFile}), {
   plugins: [
     new HtmlwebpackPlugin({
       template: './src/index.html',
-      inject: 'body'
+      inject: 'body',
+      minify:
+      {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCssAssetsPlugin()
+    ]
+  }
 })
